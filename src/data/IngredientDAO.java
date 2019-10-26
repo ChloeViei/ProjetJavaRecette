@@ -54,4 +54,19 @@ public class IngredientDAO implements IngredientSQL {
             e.printStackTrace();
         }
     }
+
+    public void modifierIngredient(Ingredient ingredient)
+    {
+        System.out.println("IngredientDAO.modifierIngredient()");
+        try {
+            PreparedStatement requeteModifierIngredient = connexion.prepareStatement(SQL_MODIFIER_INGREDIENT);
+            requeteModifierIngredient.setString(1, ingredient.getNom_ingredient());
+            requeteModifierIngredient.setString(2, ingredient.getCategorie_ingredient());
+
+            System.out.println("SQL : " + SQL_MODIFIER_INGREDIENT);
+            requeteModifierIngredient.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

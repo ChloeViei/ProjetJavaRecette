@@ -21,6 +21,9 @@ public class NavigateurVues extends Application {
 
     public NavigateurVues() {
         this.vueListeIngredient = new VueListeIngredient();
+        this.vueIngredient = new VueIngredient();
+        this.vueAjouterIngredient = new VueAjouterIngredient();
+        this.vueEditerIngredient = new VueEditerIngredient();
     }
 
     @Override
@@ -33,8 +36,9 @@ public class NavigateurVues extends Application {
         this.controleurIngredient = ControleurIngredient.getInstance();
         this.controleurIngredient.activerVues(this);
         this.vueListeIngredient.setControleurIngredient(controleurIngredient);
-
-        // TODO : Ajouter les autres fonctionnalité possible a faire sur un ingredient
+        this.vueIngredient.setControleur(controleurIngredient);
+        this.vueAjouterIngredient.setControleur(controleurIngredient);
+        this.vueEditerIngredient.setControleur(controleurIngredient);
     }
 
     public VueListeIngredient getVueListeIngredient() {

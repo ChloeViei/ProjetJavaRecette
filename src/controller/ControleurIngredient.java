@@ -2,15 +2,21 @@ package controller;
 
 import data.IngredientDAO;
 import model.Ingredient;
+import view.Ingredient.VueAjouterIngredient;
+import view.Ingredient.VueEditerIngredient;
 import view.NavigateurVues;
 import view.Ingredient.VueIngredient;
 import view.Ingredient.VueListeIngredient;
+
+import java.util.List;
 
 public class ControleurIngredient {
 
     private NavigateurVues navigateurVues;
     private VueListeIngredient vueListeIngredient = null;
     private VueIngredient vueIngredient = null;
+    private VueAjouterIngredient vueAjouterIngredient = null;
+    private VueEditerIngredient vueEditerIngredient = null;
     private IngredientDAO ingredientDAO = null;
 
     private ControleurIngredient() {
@@ -20,7 +26,23 @@ public class ControleurIngredient {
 
     public void activerVues(NavigateurVues navigateur) {
         this.navigateurVues = navigateur;
-        this.vueIngredient = navigateurVues.getVueIngredient();
+        this.vueListeIngredient = navigateur.getVueListeIngredient();
+        this.vueIngredient = navigateur.getVueIngredient();
+        this.vueAjouterIngredient = navigateur.getVueAjouterIngredient();
+        this.vueEditerIngredient = navigateur.getVueEditerIngredient();
+
+
+        //// TEST ////
+        Ingredient ingredient = new Ingredient("Pomme", "Fruit");
+        this.vueIngredient.afficherIngredient(ingredient); // Appel de ma fonction avant de la programmer (pour tester � mesure)
+
+        this.navigateurVues.naviguerVersVueIngredient();
+
+//        /// TEST ///
+//        List<Ingredient> listeIngredientTest = ingredientDAO.listerIngredient();
+//        this.vueListeIngredient.afficherListeIngredient(listeIngredientTest); // Appel de ma fonction avant de la programmer (pour tester � mesure)
+//
+//        this.navigateurVues.naviguerVersVueListeIngredient();
     }
 
 
@@ -49,9 +71,9 @@ public class ControleurIngredient {
     {
         System.out.println("ControleurIngredient.notifierEnregistrerIngredient()");
         Ingredient ingredient = this.navigateurVues.getVueEditerIngredient().demanderIngredient();
-        this.ingredientDAO.(mouton);
-        this.vueListeMouton.afficherListeMouton(this.moutonDAO.listerMoutons()); // TODO optimiser
-        this.navigateur.naviguerVersVueListeMouton();
+        this.ingredientDAO.modifierIngredient(ingredient);
+        this.vueListeIngredient.afficherListeIngredient(this.ingredientDAO.listerIngredient()); // TODO optimiser
+        this.navigateurVues.naviguerVersVueListeIngredient();
     }
 
 }
