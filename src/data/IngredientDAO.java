@@ -2,10 +2,7 @@ package data;
 
 import model.Ingredient;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,5 +37,21 @@ public class IngredientDAO implements IngredientSQL {
         }
 
         return listeIngredients;
+    }
+
+    public void ajouterIngredient(Ingredient ingredient)
+    {
+        System.out.println("IngredientDAO.ajouterIngredient()");
+        try {
+            PreparedStatement requeteAjouterIngredient = connexion.prepareStatement(SQL_AJOUTER_INGREDIENT);
+            requeteAjouterIngredient.setString(1, ingredient.getNom_ingredient());
+            requeteAjouterIngredient.setString(2, ingredient.getCategorie_ingredient());
+
+            System.out.println("SQL : " + SQL_AJOUTER_INGREDIENT);
+            requeteAjouterIngredient.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

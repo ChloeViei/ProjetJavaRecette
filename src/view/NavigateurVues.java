@@ -3,6 +3,9 @@ package view;
 import controller.ControleurIngredient;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import view.Ingredient.VueAjouterIngredient;
+import view.Ingredient.VueEditerIngredient;
+import view.Ingredient.VueIngredient;
 import view.Ingredient.VueListeIngredient;
 
 public class NavigateurVues extends Application {
@@ -10,6 +13,9 @@ public class NavigateurVues extends Application {
     private Stage fenetre;
 
     private VueListeIngredient vueListeIngredient = null;
+    private VueIngredient vueIngredient = null;
+    private VueAjouterIngredient vueAjouterIngredient = null;
+    private VueEditerIngredient vueEditerIngredient = null;
 
     private ControleurIngredient controleurIngredient = null;
 
@@ -35,8 +41,35 @@ public class NavigateurVues extends Application {
         return vueListeIngredient;
     }
 
+    public VueIngredient getVueIngredient() {
+        return vueIngredient;
+    }
+
+    public VueAjouterIngredient getVueAjouterIngredient() {
+        return vueAjouterIngredient;
+    }
+
+    public VueEditerIngredient getVueEditerIngredient() {
+        return vueEditerIngredient;
+    }
+
     public void naviguerVersVueListeIngredient() {
         fenetre.setScene(this.vueListeIngredient);
+        fenetre.show();
+    }
+
+    public void naviguerVersVueIngredient() {
+        fenetre.setScene(this.vueIngredient);
+        fenetre.show();
+    }
+
+    public void naviguerVersVueAjouterIngredient() {
+        fenetre.setScene(this.vueAjouterIngredient);
+        fenetre.show();
+    }
+
+    public void naviguerVersVueEditerIngredient() {
+        fenetre.setScene(this.vueEditerIngredient);
         fenetre.show();
     }
 }

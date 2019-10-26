@@ -1,6 +1,7 @@
 package controller;
 
 import data.IngredientDAO;
+import model.Ingredient;
 import view.NavigateurVues;
 import view.Ingredient.VueIngredient;
 import view.Ingredient.VueListeIngredient;
@@ -19,6 +20,7 @@ public class ControleurIngredient {
 
     public void activerVues(NavigateurVues navigateur) {
         this.navigateurVues = navigateur;
+        this.vueIngredient = navigateurVues.getVueIngredient();
     }
 
 
@@ -32,5 +34,24 @@ public class ControleurIngredient {
         return instance;
     }
     // fin singleton
+
+
+    public void notifierEnregistrerNouveauIngredient()
+    {
+        System.out.println("ControleurIngredient.notifierEnregistrerNouveauIngredient()");
+        Ingredient ingredient = this.navigateurVues.getVueAjouterIngredient().demanderIngredient();
+        this.ingredientDAO.ajouterIngredient(ingredient);
+        this.vueListeIngredient.afficherListeIngredient(this.ingredientDAO.listerIngredient()); // TODO optimiser
+        this.navigateurVues.naviguerVersVueListeIngredient();
+    }
+
+    public void notifierEnregistrerIngredient()
+    {
+        System.out.println("ControleurIngredient.notifierEnregistrerIngredient()");
+        Ingredient ingredient = this.navigateurVues.getVueEditerIngredient().demanderIngredient();
+        this.ingredientDAO.(mouton);
+        this.vueListeMouton.afficherListeMouton(this.moutonDAO.listerMoutons()); // TODO optimiser
+        this.navigateur.naviguerVersVueListeMouton();
+    }
 
 }
