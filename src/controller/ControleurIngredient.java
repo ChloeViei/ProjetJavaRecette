@@ -2,8 +2,8 @@ package controller;
 
 import data.IngredientDAO;
 import view.NavigateurVues;
-import view.VueIngredient;
-import view.VueListeIngredient;
+import view.Ingredient.VueIngredient;
+import view.Ingredient.VueListeIngredient;
 
 public class ControleurIngredient {
 

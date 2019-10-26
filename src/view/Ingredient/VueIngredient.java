@@ -1,4 +1,4 @@
-package view;
+package view.Ingredient;
 
 import javafx.scene.control.Label;
 

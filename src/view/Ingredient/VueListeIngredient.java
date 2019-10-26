@@ -1,4 +1,4 @@
-package view;
+package view.Ingredient;
 
 import controller.ControleurIngredient;
 import javafx.scene.Parent;

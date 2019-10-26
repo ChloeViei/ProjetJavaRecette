@@ -3,6 +3,7 @@ package view;
 import controller.ControleurIngredient;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import view.Ingredient.VueListeIngredient;
 
 public class NavigateurVues extends Application {
 
