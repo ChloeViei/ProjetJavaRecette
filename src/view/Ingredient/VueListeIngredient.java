@@ -1,6 +1,8 @@
 package view.Ingredient;
 
 import controller.ControleurIngredient;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,19 +30,32 @@ public class VueListeIngredient extends Scene {
 
         int numero = 0;
         this.grilleIngredient.add(new Label("Nom"), 0, numero);
+        this.grilleIngredient.add(new Label("Catégorie"), 1, numero);
 
         for (Ingredient ingredient : listeIngredients) {
             Button actionEditerIngredient = new Button("Editer");
-
-            // TODO : action pour afficher information de l'ingredient
+            actionEditerIngredient.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    controleurIngredient.notifierNaviguerEditerIngredient(ingredient.getId_ingredient());
+                }
+            });
 
             numero ++;
 
             this.grilleIngredient.add(new Label(ingredient.getNom_ingredient()), 0, numero);
+            this.grilleIngredient.add(new Label(ingredient.getCategorie_ingredient()), 1, numero);
             this.grilleIngredient.add(actionEditerIngredient, 2, numero);
         }
 
-        // TODO : faire l'ajout d'un ingredient possible depuis la liste
+        this.actionNaviguerAjouterIngredient.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                controleurIngredient.notifierNaviguerAjouterIngredient();
+            }
+        });
+
+        this.grilleIngredient.add(this.actionNaviguerAjouterIngredient, 1, ++numero);
 
     }
 

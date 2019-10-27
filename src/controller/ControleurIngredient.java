@@ -31,12 +31,14 @@ public class ControleurIngredient {
         this.vueAjouterIngredient = navigateur.getVueAjouterIngredient();
         this.vueEditerIngredient = navigateur.getVueEditerIngredient();
 
+        this.navigateurVues.naviguerVersVueListeIngredient();
 
-        //// TEST ////
-        Ingredient ingredient = new Ingredient("Pomme", "Fruit");
-        this.vueIngredient.afficherIngredient(ingredient); // Appel de ma fonction avant de la programmer (pour tester � mesure)
 
-        this.navigateurVues.naviguerVersVueIngredient();
+//        //// TEST ////
+//        Ingredient ingredient = new Ingredient("Pomme", "Fruit");
+//        this.vueIngredient.afficherIngredient(ingredient); // Appel de ma fonction avant de la programmer (pour tester � mesure)
+//
+//        this.navigateurVues.naviguerVersVueIngredient();
 
 //        /// TEST ///
 //        List<Ingredient> listeIngredientTest = ingredientDAO.listerIngredient();
@@ -76,4 +78,15 @@ public class ControleurIngredient {
         this.navigateurVues.naviguerVersVueListeIngredient();
     }
 
+    public void notifierNaviguerAjouterIngredient() {
+        System.out.println("ControleurIngredient.notifierNaviguerAjouterIngredient()");
+        this.navigateurVues.naviguerVersVueAjouterIngredient();
+    }
+
+    public void notifierNaviguerEditerIngredient(int idIngredient) {
+        System.out.println("ControleurIngredient.notifierNaviguerEditerIngredient(" + idIngredient + ")");
+        // récuperation des informations du mouton selectionner
+        this.vueEditerIngredient.afficherIngredient(this.ingredientDAO.rapporterIngredient(idIngredient));
+        this.navigateurVues.naviguerVersVueEditerIngredient();
+    }
 }

@@ -69,4 +69,28 @@ public class IngredientDAO implements IngredientSQL {
             e.printStackTrace();
         }
     }
+
+    public Ingredient rapporterIngredient(int idIngredient) {
+        PreparedStatement requeteIngredient;
+
+        try {
+            requeteIngredient = connexion.prepareStatement(SQL_RAPPORTER_INGREDIENT);
+            requeteIngredient.setInt(1, idIngredient);
+            System.out.println(SQL_RAPPORTER_INGREDIENT);
+
+            ResultSet curseurIngredient = requeteIngredient.executeQuery();
+            curseurIngredient.next();
+
+            int id = curseurIngredient.getInt("idIngredient");
+            String nomIngredient = curseurIngredient.getString("nomIngredient");
+            String categorieIngredient = curseurIngredient.getString("categorieIngredient");
+            System.out.println("Ingredient : " + nomIngredient + " categorie : " + categorieIngredient);
+            Ingredient ingredient = new Ingredient(nomIngredient, categorieIngredient);
+            ingredient.setId_ingredient(id);
+            return ingredient;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
