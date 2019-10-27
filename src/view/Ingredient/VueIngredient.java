@@ -11,7 +11,7 @@ public class VueIngredient extends Scene {
     protected Label valeurNom;
     protected Label valeurCategorie;
 
-    private ControleurIngredient controleur = null;
+    private ControleurIngredient controleurIngredient = null;
 
     public VueIngredient() {
         super(new GridPane(), 400, 400);
@@ -26,14 +26,13 @@ public class VueIngredient extends Scene {
         grilleMouton.add(valeurCategorie, 1, 1);
     }
 
-    public void afficherIngredient(Ingredient ingredient)
-    {
+    public void afficherIngredient(Ingredient ingredient) {
         this.valeurNom.setText(ingredient.getNom_ingredient());
         this.valeurCategorie.setText(ingredient.getCategorie_ingredient());
     }
 
     public void setControleur(ControleurIngredient controleur) {
-        this.controleur = controleur;
+        this.controleurIngredient = controleur;
     }
 
 }

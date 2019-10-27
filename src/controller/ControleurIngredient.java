@@ -10,6 +10,7 @@ import view.Ingredient.VueListeIngredient;
 
 import java.util.List;
 
+
 public class ControleurIngredient {
 
     private NavigateurVues navigateurVues;
@@ -25,26 +26,22 @@ public class ControleurIngredient {
     }
 
     public void activerVues(NavigateurVues navigateur) {
+
         this.navigateurVues = navigateur;
         this.vueListeIngredient = navigateur.getVueListeIngredient();
         this.vueIngredient = navigateur.getVueIngredient();
         this.vueAjouterIngredient = navigateur.getVueAjouterIngredient();
         this.vueEditerIngredient = navigateur.getVueEditerIngredient();
 
-        this.navigateurVues.naviguerVersVueListeIngredient();
-
-
-//        //// TEST ////
-//        Ingredient ingredient = new Ingredient("Pomme", "Fruit");
-//        this.vueIngredient.afficherIngredient(ingredient); // Appel de ma fonction avant de la programmer (pour tester � mesure)
-//
-//        this.navigateurVues.naviguerVersVueIngredient();
-
-//        /// TEST ///
-//        List<Ingredient> listeIngredientTest = ingredientDAO.listerIngredient();
-//        this.vueListeIngredient.afficherListeIngredient(listeIngredientTest); // Appel de ma fonction avant de la programmer (pour tester � mesure)
-//
 //        this.navigateurVues.naviguerVersVueListeIngredient();
+
+
+
+        /// TEST ///
+        List<Ingredient> listeIngredientTest = ingredientDAO.listerIngredient();
+        this.vueListeIngredient.afficherListeIngredient(listeIngredientTest); // Appel de ma fonction avant de la programmer (pour tester)
+
+        this.navigateurVues.naviguerVersVueListeIngredient();
     }
 
 

@@ -3,7 +3,6 @@ package view.Ingredient;
 import controller.ControleurIngredient;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,6 +18,7 @@ public class VueListeIngredient extends Scene {
     private ControleurIngredient controleurIngredient = null;
 
     private Button actionNaviguerAjouterIngredient;
+
     public VueListeIngredient() {
         super(new GridPane(), 400, 400);
         grilleIngredient = (GridPane) this.getRoot();
