@@ -2,6 +2,7 @@ package view;
 
 import controller.ControleurIngredient;
 import javafx.application.Application;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.Ingredient.VueAjouterIngredient;
 import view.Ingredient.VueEditerIngredient;
@@ -11,6 +12,7 @@ import view.Ingredient.VueListeIngredient;
 public class NavigateurVues extends Application {
 
     private Stage fenetre;
+    private BorderPane rootLayout;
 
     private VueListeIngredient vueListeIngredient = null;
     private VueIngredient vueIngredient = null;
@@ -29,6 +31,7 @@ public class NavigateurVues extends Application {
     @Override
     public void start(Stage fenetre) throws Exception {
         this.fenetre = fenetre;
+        this.fenetre.setTitle("Projet Recette");
 
         this.fenetre.setScene(null);
         this.fenetre.show();
