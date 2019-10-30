@@ -2,7 +2,11 @@ package view;
 
 import controller.ControleurIngredient;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import view.Ingredient.VueAjouterIngredient;
 import view.Ingredient.VueEditerIngredient;
@@ -12,7 +16,7 @@ import view.Ingredient.VueListeIngredient;
 public class NavigateurVues extends Application {
 
     private Stage fenetre;
-    private BorderPane rootLayout;
+    private BorderPane menu;
 
     private VueListeIngredient vueListeIngredient = null;
     private VueIngredient vueIngredient = null;
@@ -32,6 +36,18 @@ public class NavigateurVues extends Application {
     public void start(Stage fenetre) throws Exception {
         this.fenetre = fenetre;
         this.fenetre.setTitle("Projet Recette");
+
+//        // Création d'un bar de menu pour selectionner l'affichage de la fenetre
+//        Menu menuIngredient = new Menu("Ingrédient");
+//        Menu menuRecette = new Menu("Recette");
+//        Menu menuListeCourse = new Menu("Liste course");
+//        MenuBar menuBar = new MenuBar();
+//        menuBar.getMenus().addAll(menuIngredient, menuRecette, menuListeCourse);
+//        VBox vBox = new VBox(menuBar);
+//        Scene scene = new Scene(vBox, 500, 500);
+//
+//        this.fenetre.setScene(scene);
+//        this.fenetre.show();
 
         this.fenetre.setScene(null);
         this.fenetre.show();

@@ -47,6 +47,8 @@ public class IngredientDAO implements IngredientSQL {
             PreparedStatement requeteAjouterIngredient = connexion.prepareStatement(SQL_AJOUTER_INGREDIENT);
             requeteAjouterIngredient.setString(1, ingredient.getNom_ingredient());
             requeteAjouterIngredient.setString(2, ingredient.getCategorie_ingredient());
+            requeteAjouterIngredient.setDouble(3, ingredient.getPrix_ingredient());
+            requeteAjouterIngredient.setDouble(4, ingredient.getQuantite_ingredient());
 
             System.out.println("SQL : " + SQL_AJOUTER_INGREDIENT);
             requeteAjouterIngredient.execute();
@@ -63,7 +65,9 @@ public class IngredientDAO implements IngredientSQL {
             PreparedStatement requeteModifierIngredient = connexion.prepareStatement(SQL_MODIFIER_INGREDIENT);
             requeteModifierIngredient.setString(1, ingredient.getNom_ingredient());
             requeteModifierIngredient.setString(2, ingredient.getCategorie_ingredient());
-            requeteModifierIngredient.setInt(3, ingredient.getId_ingredient());
+            requeteModifierIngredient.setDouble(3, ingredient.getPrix_ingredient());
+            requeteModifierIngredient.setDouble(4, ingredient.getQuantite_ingredient());
+            requeteModifierIngredient.setInt(5, ingredient.getId_ingredient());
 
             System.out.println("SQL : " + SQL_MODIFIER_INGREDIENT);
             requeteModifierIngredient.execute();
@@ -86,8 +90,10 @@ public class IngredientDAO implements IngredientSQL {
             int id = curseurIngredient.getInt("id_ingredient");
             String nomIngredient = curseurIngredient.getString("nom_ingredient");
             String categorieIngredient = curseurIngredient.getString("categorie_ingredient");
-            System.out.println("Ingredient : " + nomIngredient + " categorie : " + categorieIngredient);
-            Ingredient ingredient = new Ingredient(nomIngredient, categorieIngredient);
+            double prixIngredient = curseurIngredient.getDouble("prix_ingredient");
+            double quantiteIngredient = curseurIngredient.getDouble("quantite_ingredient");
+            System.out.println("Ingredient : " + nomIngredient + " categorie : " + categorieIngredient + " prix :" + prixIngredient + " quantite : " + quantiteIngredient);
+            Ingredient ingredient = new Ingredient(nomIngredient, categorieIngredient, prixIngredient, quantiteIngredient);
             ingredient.setId_ingredient(id);
             return ingredient;
         } catch (SQLException e) {

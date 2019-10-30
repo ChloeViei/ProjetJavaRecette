@@ -20,15 +20,13 @@ public class VueIngredient extends Scene {
         valeurNom = new Label("");
         grilleMouton.add(new Label("Nom : "), 0, 0);
         grilleMouton.add(valeurNom, 1, 0);
-
-        valeurCategorie = new Label("");
-        grilleMouton.add(new Label("Catégorie : "), 0, 1);
-        grilleMouton.add(valeurCategorie, 1, 1);
     }
 
     public void afficherIngredient(Ingredient ingredient) {
         this.valeurNom.setText(ingredient.getNom_ingredient());
         this.valeurCategorie.setText(ingredient.getCategorie_ingredient());
+        this.valeurCategorie.setText(String.valueOf(ingredient.getPrix_ingredient()));
+        this.valeurCategorie.setText(String.valueOf(ingredient.getQuantite_ingredient()));
     }
 
     public void setControleur(ControleurIngredient controleur) {

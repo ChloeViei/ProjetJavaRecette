@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 26 oct. 2019 à 06:59
+-- Généré le :  mer. 30 oct. 2019 à 09:49
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -32,8 +32,23 @@ DROP TABLE IF EXISTS `ingredient`;
 CREATE TABLE IF NOT EXISTS `ingredient` (
   `id_ingredient` int(11) NOT NULL AUTO_INCREMENT,
   `nom_ingredient` varchar(100) NOT NULL,
+  `categorie_ingredient` varchar(100) NOT NULL,
+  `prix_ingredient` int(11) NOT NULL,
+  `quantite_ingredient` int(11) NOT NULL,
   PRIMARY KEY (`id_ingredient`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `ingredient`
+--
+
+INSERT INTO `ingredient` (`id_ingredient`, `nom_ingredient`, `categorie_ingredient`, `prix_ingredient`, `quantite_ingredient`) VALUES
+(1, 'Banane', 'Fruit', 0, 0),
+(2, 'Pomme', 'Fruit', 0, 0),
+(3, 'Pate', 'Feculent', 0, 0),
+(4, 'Farine', 'Céréale', 0, 0),
+(5, 'Chocolat', 'bof', 0, 0),
+(6, 'Carotte', 'Légume', 0, 0);
 
 -- --------------------------------------------------------
 

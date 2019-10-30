@@ -30,7 +30,6 @@ public class VueListeIngredient extends Scene {
 
         int numero = 0;
         this.grilleIngredient.add(new Label("Nom"), 0, numero);
-        this.grilleIngredient.add(new Label("Catégorie"), 1, numero);
 
         for (Ingredient ingredient : listeIngredients) {
             Button actionEditerIngredient = new Button("Editer");
@@ -44,8 +43,7 @@ public class VueListeIngredient extends Scene {
             numero ++;
 
             this.grilleIngredient.add(new Label(ingredient.getNom_ingredient()), 0, numero);
-            this.grilleIngredient.add(new Label(ingredient.getCategorie_ingredient()), 1, numero);
-            this.grilleIngredient.add(actionEditerIngredient, 2, numero);
+            this.grilleIngredient.add(actionEditerIngredient, 1, numero);
         }
 
         this.actionNaviguerAjouterIngredient.setOnAction(new EventHandler<ActionEvent>() {
