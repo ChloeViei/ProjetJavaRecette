@@ -11,7 +11,7 @@ public class RecetteDAO implements RecetteSQL {
     private Connection connexion = null;
 
     public RecetteDAO() {
-        System.out.println("Connexion à la base de donnée PHPmyadmin");
+        System.out.println("Connexion à la base de donnée PHPmyadmin pour les Recettes");
         this.connexion = BaseDeDonnees.getInstance().getConnexion();
     }
 
@@ -27,9 +27,10 @@ public class RecetteDAO implements RecetteSQL {
             while (curseurListeRecettes.next()){
                 int id_recette = curseurListeRecettes.getInt("id_recette");
                 String nom_recette = curseurListeRecettes.getString("nom_recette");
+                String difficulte_recette = curseurListeRecettes.getString("difficulte_recette");
 
-                System.out.println("Recette " + nom_recette);
-                Recette recette = new Recette(nom_recette);
+                System.out.println("Recette : " + nom_recette + " de difficulté = " + difficulte_recette);
+                Recette recette = new Recette(nom_recette, difficulte_recette);
                 recette.setId_recette(id_recette);
                 listeRecettes.add(recette);
             }
@@ -47,6 +48,10 @@ public class RecetteDAO implements RecetteSQL {
             PreparedStatement requeteAjouterRecette = connexion.prepareStatement(SQL_AJOUTER_RECETTE);
             requeteAjouterRecette.setString(1, recette.getNom_recette());
             requeteAjouterRecette.setString(2, recette.getDescription_recette());
+            requeteAjouterRecette.setString(3, recette.getEtape_recette());
+            requeteAjouterRecette.setInt(4, recette.getTemps_preparation());
+            requeteAjouterRecette.setInt(5, recette.getNombre_personne());
+            requeteAjouterRecette.setInt(6, recette.getDifficulte_recette());
 
             System.out.println("SQL : " + SQL_AJOUTER_RECETTE);
             requeteAjouterRecette.execute();

@@ -46,6 +46,8 @@ public class VueListeRecette extends Scene {
 
         int numero = 1;
         this.grilleRecette.add(new Label("Nom"), 0, numero);
+        this.grilleRecette.add(new Label("Difficulté"), 1, numero);
+        this.grilleRecette.add(new Label("Modifier"), 2, numero);
 
         for (Recette recette : listeRecettes) {
             Button actionEditerRecette = new Button("Editer");
@@ -59,7 +61,8 @@ public class VueListeRecette extends Scene {
             numero ++;
 
             this.grilleRecette.add(new Label(recette.getNom_recette()), 0, numero);
-            this.grilleRecette.add(actionEditerRecette, 1, numero);
+            this.grilleRecette.add(new Label(recette.getDescription_recette()), 1, numero);
+            this.grilleRecette.add(actionEditerRecette, 2, numero);
         }
 
         this.actionNaviguerAjouterRecette.setOnAction(new EventHandler<ActionEvent>() {
