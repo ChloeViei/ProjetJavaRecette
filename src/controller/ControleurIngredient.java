@@ -37,11 +37,11 @@ public class ControleurIngredient {
 
 
 
-        /// TEST ///
-        List<Ingredient> listeIngredientTest = ingredientDAO.listerIngredient();
-        this.vueListeIngredient.afficherListeIngredient(listeIngredientTest); // Appel de ma fonction avant de la programmer (pour tester)
-
-        this.navigateurVues.naviguerVersVueListeIngredient();
+//        /// TEST ///
+//        List<Ingredient> listeIngredientTest = ingredientDAO.listerIngredient();
+//        this.vueListeIngredient.afficherListeIngredient(listeIngredientTest); // Appel de ma fonction avant de la programmer (pour tester)
+//
+//        this.navigateurVues.naviguerVersVueListeIngredient();
     }
 
 

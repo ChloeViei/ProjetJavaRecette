@@ -43,7 +43,7 @@ public class VueListeIngredient extends Scene {
 
     public void afficherListeIngredient(List<Ingredient> listeIngredients) {
         this.grilleIngredient = new GridPane();
-        
+
         int numero = 1;
         this.grilleIngredient.add(new Label("Nom"), 0, numero);
 
