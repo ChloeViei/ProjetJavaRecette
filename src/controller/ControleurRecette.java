@@ -42,11 +42,11 @@ public class ControleurRecette {
 
 
 
-        /// TEST ///
-        List<Recette> listeRecetteTest = recetteDAO.listerRecette();
-        this.vueListeRecette.afficherListeRecette(listeRecetteTest); // Appel de ma fonction avant de la programmer (pour tester)
-
-        this.navigateurVues.naviguerVersVueListeRecette();
+//        /// TEST ///
+//        List<Recette> listeRecetteTest = recetteDAO.listerRecette();
+//        this.vueListeRecette.afficherListeRecette(listeRecetteTest); // Appel de ma fonction avant de la programmer (pour tester)
+//
+//        this.navigateurVues.naviguerVersVueListeRecette();
     }
 
 

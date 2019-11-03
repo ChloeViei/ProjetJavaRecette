@@ -16,6 +16,8 @@ public class VueEditerIngredient extends Scene {
 
     protected TextField valeurNom;
     protected TextField valeurCategorie;
+    protected TextField valeurPrix;
+    protected TextField valeurQuantite;
 
     private ControleurIngredient controleurIngredient = null;
     protected Button actionEnregistrerIngredient = null;
@@ -48,7 +50,9 @@ public class VueEditerIngredient extends Scene {
         grilleIngredient.add(new Label("Catégorie : "), 0, 1);
         grilleIngredient.add(valeurCategorie, 1, 1);
 
-        // Todo : retirer les textes magiques
+        // TODO : réaliser la sélection de int pour ajouter le prix et la quantite 
+
+
         panneau.getChildren().add(new Label("Editer un ingrédient")); // Todo : cr�er un sous-type de Label ou Text pour les titres
         panneau.getChildren().add(grilleIngredient);
         panneau.getChildren().add(this.actionEnregistrerIngredient);

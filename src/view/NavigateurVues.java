@@ -2,12 +2,11 @@ package view;
 
 import controller.ControleurIngredient;
 import controller.ControleurRecette;
+import controller.RootLayoutController;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import view.Ingredient.VueAjouterIngredient;
 import view.Ingredient.VueEditerIngredient;
@@ -18,9 +17,14 @@ import view.Recette.VueEditerRecette;
 import view.Recette.VueListeRecette;
 import view.Recette.VueRecette;
 
+import java.io.IOException;
+import java.net.URL;
+
 public class NavigateurVues extends Application {
 
     private Stage fenetre;
+    private BorderPane rootLayout;
+
 
     // Pour les ingrédients
     private VueListeIngredient vueListeIngredient = null;
@@ -47,6 +51,10 @@ public class NavigateurVues extends Application {
         this.vueRecette = new VueRecette();
         this.vueAjouterRecette = new VueAjouterRecette();
         this.vueEditerRecette = new VueEditerRecette();
+
+        // Initialisation de la vue avec l'affichage par défaut de la barre de navigation et de la liste des ingrédients
+        initRootLayout();
+
     }
 
     @Override
@@ -71,6 +79,38 @@ public class NavigateurVues extends Application {
         this.vueAjouterRecette.setControleur(controleurRecette);
         this.vueEditerRecette.setControleur(controleurRecette);
     }
+
+
+
+    /**
+     * Initializes the root layout
+     */
+    public void initRootLayout() {
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            URL url = getClass().getResource("Menu/RootLayout.fxml");
+            System.out.println(url);
+            loader.setLocation(url);
+            loader.setClassLoader(getClass().getClassLoader());
+
+            rootLayout = (BorderPane) loader.load();
+            Scene scene = new Scene(rootLayout);
+            System.out.println(scene);
+
+            this.fenetre.setScene(scene);
+
+            // Give the controller access to the main app.
+            RootLayoutController controller = loader.getController();
+            controller.setMainApp(this);
+
+            this.fenetre.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public VueListeIngredient getVueListeIngredient() {
         return vueListeIngredient;

@@ -17,7 +17,11 @@ import model.Recette;
 public class VueEditerRecette extends Scene {
 
     protected TextField valeurNom;
-    protected TextField valeurCategorie;
+    protected TextField valeurDescription;
+    protected TextField valeurEtape;
+    protected TextField valeurTemps;
+    protected TextField valeurNombrePersonne;
+    protected TextField valeurDifficulte;
 
     private ControleurRecette controleurRecette = null;
     protected Button actionEnregistrerRecette = null;
@@ -46,11 +50,17 @@ public class VueEditerRecette extends Scene {
         grilleRecette.add(new Label("Nom : "), 0, 0);
         grilleRecette.add(valeurNom, 1, 0);
 
-        valeurCategorie = new TextField("");
+        valeurDescription = new TextField("");
         grilleRecette.add(new Label("Description : "), 0, 1);
-        grilleRecette.add(valeurCategorie, 1, 1);
+        grilleRecette.add(valeurDescription, 1, 1);
 
-        // Todo : retirer les textes magiques
+        valeurEtape = new TextField("");
+        grilleRecette.add(new Label("Etapes de la recette  : "), 0, 2);
+        grilleRecette.add(valeurEtape, 1, 2);
+
+        // TODO : faire une selection de int grâce à un spinner
+
+
         panneau.getChildren().add(new Label("Editer une recette")); // Todo : cr�er un sous-type de Label ou Text pour les titres
         panneau.getChildren().add(grilleRecette);
         panneau.getChildren().add(this.actionEnregistrerRecette);
@@ -60,12 +70,13 @@ public class VueEditerRecette extends Scene {
     {
         this.idRecette = recette.getId_recette();
         this.valeurNom.setText(recette.getNom_recette());
-        this.valeurCategorie.setText(recette.getDescription_recette());
+        this.valeurDescription.setText(recette.getDescription_recette());
+        this.valeurEtape.setText(recette.getEtape_recette());
     }
 
     public Recette demanderRecette()
     {
-        Recette recette = new Recette(this.valeurNom.getText(), this.valeurCategorie.getText());
+        Recette recette = new Recette(this.valeurNom.getText(), this.valeurDescription.getText(), this.valeurEtape.getText());
         recette.setId_recette(idRecette);
         return recette;
     }
