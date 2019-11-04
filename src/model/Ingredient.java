@@ -3,7 +3,7 @@ package model;
 public class Ingredient {
 
     protected int id_ingredient;
-    protected  String nom_ingredient;
+    protected String nom_ingredient;
     protected String categorie_ingredient;
     protected double prix_ingredient;
     protected double quantite_ingredient;

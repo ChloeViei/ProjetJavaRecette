@@ -2,42 +2,57 @@ package data;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Aliment;
 import model.Ingredient;
 
 import java.sql.*;
 
-public class IngredientDAO implements IngredientSQL {
+public class AlimentDAO implements IngredientSQL {
 
     private Connection connexion = null;
 
-    public IngredientDAO() {
+    public AlimentDAO() {
         System.out.println("Connexion à la base de donnée PHPmyadmin");
         this.connexion = BaseDeDonnees.getInstance().getConnexion();
     }
 
-    public ObservableList<Ingredient> listerIngredient() {
+    public ObservableList<Aliment> listerAliment() {
 
-        ObservableList<Ingredient> listeIngredients = FXCollections.observableArrayList();
-        Statement requeteListeIngredients;
+        ObservableList<Aliment> listeAliments = FXCollections.observableArrayList();
+        Statement requeteListeAliments;
 
         try {
-            requeteListeIngredients = connexion.createStatement();
-            ResultSet curseurListeIngredients = requeteListeIngredients.executeQuery(IngredientSQL.SQL_LISTER_INGREDIENTS);
+            requeteListeAliments = connexion.createStatement();
+            ResultSet curseurListeAliments = requeteListeAliments.executeQuery(IngredientSQL.SQL_LISTER_INGREDIENTS);
 
-            while (curseurListeIngredients.next()){
-                int id_ingredient = curseurListeIngredients.getInt("id_ingredient");
-                String nom_ingredient = curseurListeIngredients.getString("nom_ingredient");
+            while (curseurListeAliments.next()){
+                int id_aliment = curseurListeAliments.getInt("id_ingredient");
+                String nom_aliment = curseurListeAliments.getString("nom_ingredient");
+                String categorie_aliment = curseurListeAliments.getString("categorie_ingredient");
+                int prix_aliment = curseurListeAliments.getInt("prix_ingredient");
+                int quantite_aliment = curseurListeAliments.getInt("quantite_ingredient");
 
-                System.out.println("Ingredient " + nom_ingredient);
-                Ingredient ingredient = new Ingredient(nom_ingredient);
-                ingredient.setId_ingredient(id_ingredient);
-                listeIngredients.add(ingredient);
+                // Generate aliment
+                Aliment ali = new Aliment();
+                ali.setIdAliment(id_aliment);
+                ali.setNomAliment(nom_aliment);
+                ali.setCategorieAliment(categorie_aliment);
+                ali.setPrixAliment(prix_aliment);
+                ali.setQuantiteAliment(quantite_aliment);
+
+                // Ajouter l'aliment à la liste
+                listeAliments.add(ali);
+
+
+//                System.out.println("Ingredient (" + id_aliment + ") nom : " + nom_aliment);
+//                Aliment aliment = new Aliment(id_aliment, nom_aliment, categorie_aliment, prix_aliment, quantite_aliment);
+//                listeAliments.add(aliment);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return listeIngredients;
+        return listeAliments;
     }
 
     public void ajouterIngredient(Ingredient ingredient)
