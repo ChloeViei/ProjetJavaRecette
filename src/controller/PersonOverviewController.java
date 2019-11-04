@@ -1,10 +1,10 @@
 package controller;
 
-import com.sun.tools.javac.Main;
 import data.AlimentDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,14 +31,10 @@ public class PersonOverviewController {
     @FXML
     private Label quantiteLabel;
 
-    // Reference to the main application.
-    private Main mainApp;
-
 
     public PersonOverviewController() {
         System.out.println("Initialisation du controleur ingredient");
         this.alimentDAO = new AlimentDAO();
-        buildData();
     }
 
 
@@ -51,29 +47,20 @@ public class PersonOverviewController {
         // Clear person details.
         showAlimentsDetails(null);
 
+
+        // Récupère les données de la base de donnée pour les affichers
+        ObservableList<Aliment> liste = FXCollections.observableArrayList();
+        liste = alimentDAO.listerAliment();
+        this.alimentTableView.setItems(liste);
+
         // Listen for selection changes and show the person details when changed.
         alimentTableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showAlimentsDetails(newValue));
     }
 
 
-    public void buildData() {
-        // Récupère les données de la base de donnée pour les affichers
-        ObservableList<Aliment> liste = FXCollections.observableArrayList();
-        liste = alimentDAO.listerAliment();
-
-//        System.out.println(liste.get(0).getIdAliment());
-        alimentTableView.setItems(liste);
-    }
-
-
-    /**
-     * Fills all text fields to show details about the person.
-     * If the specified person is null, all text fields are cleared.
-     * 
-     * @param aliment the person or null
-     */
     private void showAlimentsDetails(Aliment aliment) {
+        System.out.println("showAlimentDetails");
         if (aliment != null) {
             // Fill the labels with info from the person object.
             nomLabel.setText(aliment.getNomAliment());
@@ -89,47 +76,39 @@ public class PersonOverviewController {
         }
     }
     
-    /**
-     * Called when the user clicks on the delete button.
-     */
+
     @FXML
-    private void handleDeletePerson() {
-//        int selectedIndex = alimentTableView.getSelectionModel().getSelectedIndex();
-//        if (selectedIndex >= 0) {
-//            alimentTableView.getItems().remove(selectedIndex);
-//        } else {
-//            // Nothing selected.
-//            Alert alert = new Alert(AlertType.WARNING);
+    private void handleDeleteAliment() {
+        int selectedIndex = alimentTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            alimentTableView.getItems().remove(selectedIndex);
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
 //            alert.initOwner(mainApp.getPrimaryStage());
-//            alert.setTitle("No Selection");
-//            alert.setHeaderText("No Person Selected");
-//            alert.setContentText("Please select a person in the table.");
-//
-//            alert.showAndWait();
-//        }
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Aliment Selected");
+            alert.setContentText("Please select a aliment in the table.");
+
+            alert.showAndWait();
+        }
     }
-    
-    /**
-     * Called when the user clicks the new button. Opens a dialog to edit
-     * details for a new person.
-     */
+
+
     @FXML
-    private void handleNewPerson() {
-//        Person tempPerson = new Person();
-//        boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
+    private void handleNewAliment() {
+        Aliment tempAliment = new Aliment();
+//        boolean okClicked = mainApp.showPersonEditDialog(tempAliment);
 //        if (okClicked) {
-//            mainApp.getPersonData().add(tempPerson);
+//            alimentDAO.listerAliment().add(tempAliment);
 //        }
     }
 
-    /**
-     * Called when the user clicks the edit button. Opens a dialog to edit
-     * details for the selected person.
-     */
+
     @FXML
-    private void handleEditPerson() {
-//        Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
-//        if (selectedPerson != null) {
+    private void handleEditAliment() {
+        Aliment selectedAliment = alimentTableView.getSelectionModel().getSelectedItem();
+        if (selectedAliment != null) {
 //            boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
 //            if (okClicked) {
 //                showPersonDetails(selectedPerson);
@@ -144,7 +123,7 @@ public class PersonOverviewController {
 //            alert.setContentText("Please select a person in the table.");
 //
 //            alert.showAndWait();
-//        }
+        }
     }
 
 }
